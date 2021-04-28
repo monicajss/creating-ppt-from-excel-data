@@ -9,4 +9,4 @@ AddS.Shapes(<number of shape that u wanna put the title>).TextFrame.TextRange = 
         For i = 1 To <total of columns/shapes> Step 1 'Cells "For"
 ```
 **Excel Workbook and PPT template download**
-Link: https://drive.google.com/drive/folders/1PkaVgj7f8mtjGhuCEzuATUJ8ADF6M8Sl?usp=sharing
+https://drive.google.com/drive/folders/1PkaVgj7f8mtjGhuCEzuATUJ8ADF6M8Sl?usp=sharing
