@@ -1,4 +1,3 @@
-Attribute VB_Name = "M�dulo1"
 Sub LoopRowsSelected()
        
     Dim DataRange As Range
@@ -10,16 +9,25 @@ Sub LoopRowsSelected()
     Dim cellFor As Integer
     Dim pptPath As String
     Dim MyPPT As Object
+    Dim pptName As String
+    Dim newPPT As Object
+    Dim fileName As String
+    Dim pptFullName As String
     
     Set MyPPT = CreateObject("Powerpoint.application")
     
 '------- Open PowerPoint that is specific in the "Menu" sheets -------
     
     MyPPT.Visible = True
-    pptPath = ThisWorkbook.Path & ActiveWorkbook.Sheets("Menu").Range("E7")
-    
     'path to powerpoint
+    pptFullName = ThisWorkbook.path & ActiveWorkbook.Sheets("Menu").Range("E7")
+    
+    pptPath = pptFullName & ".pptx"
+              
     MyPPT.presentations.Open pptPath
+
+'------- Define a name for the new ppy
+    fileName = pptFullName & Format(Now(), "yyyymmdd")
    
 '------- Select data be used to create PPT -------
     
@@ -52,5 +60,13 @@ Sub LoopRowsSelected()
         Next i
         
     Next DataRow
+       
+    '------- Save the new ppt and quit all of them
+
+    Set newPPT = MyPPT.ActivePresentation
+    
+    newPPT.SaveCopyAs fileName, 1
+    MyPPT.Quit
+    MsgBox ("Created powerpoint!")
     
 End Sub
