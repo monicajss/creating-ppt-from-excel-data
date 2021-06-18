@@ -51,21 +51,25 @@ Sub LoopRowsSelected()
         
     For Each DataRow In DataRange.Rows 'Line "For"
         
-        Set AddS = Pres.Slides.AddSlide(Pres.Slides.Count + 1, Pres.SlideMaster.CustomLayouts(1))
-        AddS.Shapes(17).TextFrame.TextRange = DataRow.Cells(2, 1)
-        For i = 1 To 16 Step 1 'Cells "For"
-           cellFor = i + 1
-           lDados(i) = DataRow.Cells(2, cellFor)
-           AddS.Shapes(i).TextFrame.TextRange = lDados(i)
-        Next i
-        
+        If DataRow.Cells(2, 1) <> "" Then
+                     
+               Set AddS = Pres.Slides.AddSlide(Pres.Slides.Count + 1, Pres.SlideMaster.CustomLayouts(1))
+                            
+               AddS.Shapes(17).TextFrame.TextRange = DataRow.Cells(2, 1)
+               
+               For i = 1 To 16 Step 1 'Cells "For"
+                  cellFor = i + 1
+                  lDados(i) = DataRow.Cells(2, cellFor)
+                  AddS.Shapes(i).TextFrame.TextRange = lDados(i)
+               Next i
+
     Next DataRow
        
     '------- Save the new ppt and quit all of them
 
     Set newPPT = MyPPT.ActivePresentation
     
-    newPPT.SaveCopyAs fileName, 1
+    newPPT.SaveCopyAs fileName
     MyPPT.Quit
     MsgBox ("Created powerpoint!")
     
